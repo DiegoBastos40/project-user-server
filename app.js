@@ -20,6 +20,15 @@ require("./config")(app);
 const allRoutes = require("./routes/index.routes");
 app.use("/", allRoutes);
 
+const diaryRoutes = require("./routes/diary.routes");
+app.use("/", diaryRoutes);
+
+const foodRoutes = require("./routes/food.routes");
+app.use("/", foodRoutes);
+
+const profileRoutes = require("./routes/profile.routes");
+app.use("/", profileRoutes);
+
 
 
 
