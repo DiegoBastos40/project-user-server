@@ -3,32 +3,30 @@ const { Schema, model } = require("mongoose");
 // TODO: Please make sure you edit the user model to whatever makes sense in this case
 const userSchema = new Schema(
   {
-    username: {
+    name: {
       type: String,
       required:true
       // unique: true -> Ideally, should be unique, but its up to you
     },
-    password: {type:String,
-    required:true},
-/*     Age:{type:Number,
+    
+    calories:{type:Number, min:0,
       required:true
     },
-    Height:{type:Number,
+    protein:{type:Number, min:0,
     required:true},
 
-    Weight:{type:Number,
+    carbohydrates:{type:Number, min:0,
     required:true},
 
-    Objective:{
-      type:String,
-      required:true,
-      enum:['Lose Fat','Build Mass']
-       },
-LifeStyke:{
-  type:String,
-  required:true,
-  enum:['Sedentay','Light Active','Moderately Active','Very Active','Extra Active']
-} */
+    fat:{
+    type:Number, min:0,
+    required:true 
+       
+},
+  quantity:{
+  type:Number, min:0,
+  required:true
+ }
     
   },
   {
