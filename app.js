@@ -26,7 +26,7 @@ app.use("/", diaryRoutes);
 const foodRoutes = require("./routes/food.routes");
 app.use("/", foodRoutes);
 
-const profileRoutes = require("./routes/profile.routes");
+const profileRoutes = require("./routes/user.routes");
 app.use("/", profileRoutes);
 
 

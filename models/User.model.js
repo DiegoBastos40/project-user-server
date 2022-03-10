@@ -10,25 +10,9 @@ const userSchema = new Schema(
     },
     password: {type:String,
     required:true},
-/*     Age:{type:Number,
-      required:true
-    },
-    Height:{type:Number,
-    required:true},
-
-    Weight:{type:Number,
-    required:true},
-
-    Objective:{
-      type:String,
-      required:true,
-      enum:['Lose Fat','Build Mass']
-       },
-LifeStyke:{
-  type:String,
-  required:true,
-  enum:['Sedentay','Light Active','Moderately Active','Very Active','Extra Active']
-} */
+caloriesWasted: {type:Number} ,
+foodCreated: [{ type: Schema.Types.ObjectId, ref: 'Food' }],
+ptRequest: {type: Schema.Types.ObjectId, ref: 'Personal'},
     
   },
   {

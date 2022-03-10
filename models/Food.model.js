@@ -1,7 +1,7 @@
 const { Schema, model } = require("mongoose");
 
 // TODO: Please make sure you edit the user model to whatever makes sense in this case
-const userSchema = new Schema(
+const foodSchema = new Schema(
   {
     name: {
       type: String,
@@ -10,17 +10,17 @@ const userSchema = new Schema(
     },
     
     calories:{type:Number, min:0,
-      required:true
+      //required:true
     },
-    protein:{type:Number, min:0,
-    required:true},
+    protein:{type:Number, min:0,},
+    //required:true},
 
-    carbohydrates:{type:Number, min:0,
-    required:true},
+    carbohydrates:{type:Number, min:0,},
+    //required:true},
 
     fat:{
     type:Number, min:0,
-    required:true 
+    //required:true 
        
 },
   quantity:{
@@ -35,6 +35,6 @@ const userSchema = new Schema(
   }
 );
 
-const User = model("User", userSchema);
+const Food = model("Food", foodSchema);
 
-module.exports = User;
+module.exports = Food;

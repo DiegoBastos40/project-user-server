@@ -1,31 +1,67 @@
 const { Schema, model } = require("mongoose");
 
 // TODO: Please make sure you edit the user model to whatever makes sense in this case
-const userSchema = new Schema(
+const ptFormSchema = new Schema(
   {
     name: {
       type: String,
-      required:true
+     
       // unique: true -> Ideally, should be unique, but its up to you
     },
     
-    calories:{type:Number, min:0,
-      required:true
+    email: {
+      type: String,
+     
+      // unique: true -> Ideally, should be unique, but its up to you
     },
-    protein:{type:Number, min:0,
-    required:true},
-
-    carbohydrates:{type:Number, min:0,
-    required:true},
-
-    fat:{
-    type:Number, min:0,
-    required:true 
-       
-},
-  quantity:{
+    
+    typeOfWorkout:{type:String,
+     
+    },
+    
+  workoutFrequency:{
   type:Number, min:0,
-  required:true
+ 
+ },
+
+ workoutSessionTime:{
+  type:Number, min:0,
+ 
+ },
+
+ injuries:{
+   hasInjuries:{
+     type:Boolean
+   },
+  injuriesDetails:{
+    type:String
+  }
+
+ },
+
+ drink:{
+  type:Boolean
+  
+ },
+
+ smoke:{
+  type:Boolean
+  
+ },
+
+ workedoutBefore:{
+  type:Boolean
+  
+ },
+
+ dietType:{
+  type:String
+  
+ },
+
+ supplements:{
+  type:Boolean
+  
  }
     
   },
@@ -35,6 +71,6 @@ const userSchema = new Schema(
   }
 );
 
-const User = model("User", userSchema);
+const PtForm = model("PtForm", userSchema);
 
 module.exports = User;
