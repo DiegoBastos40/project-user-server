@@ -13,7 +13,14 @@ const userSchema = new Schema(
 caloriesWasted: {type:Number} ,
 foodCreated: [{ type: Schema.Types.ObjectId, ref: 'Food' }],
 ptRequest: {type: Schema.Types.ObjectId, ref: 'Personal'},
-    
+   name:  {type:String},
+   age: {type:Number},
+   gender: {type:String},
+   height: {type:Number},
+   weight: {type:Number},
+   objective: {type:String},
+   lifestyle: {type:String}
+
   },
   {
     // this second object adds extra properties: `createdAt` and `updatedAt`
@@ -24,3 +31,4 @@ ptRequest: {type: Schema.Types.ObjectId, ref: 'Personal'},
 const User = model("User", userSchema);
 
 module.exports = User;
+
