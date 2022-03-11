@@ -7,7 +7,7 @@ const User = require('../models/User.model');
 
 
 router.post('/trainnerform', isAuthenticated, (req, res, next) => {
-  const {name, email, typeOfWorkout, workoutFrequency, workoutSessionTime, injuries, drink, smoke, workedoutBefore, dietType, supplements} = req.body;
+  const {name, email, typeOfWorkout, workoutFrequency, workoutSessionTime, hasInjuries, injuriesDetails, drink, smoke, workedoutBefore, dietType, supplements} = req.body;
 
   const {_id} = req.payload
 
@@ -34,7 +34,7 @@ router.get('/trainnerform', (req, res, next) => {
 
 
 router.get('/trainnerform/:trainnerId', (req, res, next) => {
-  const { foodId } = req.params;
+  const { trainnerId } = req.params;
 
   if (!mongoose.Types.ObjectId.isValid(trainnerId)) {
     res.status(400).json({ message: 'Specified Id is not valid' });

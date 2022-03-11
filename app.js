@@ -23,11 +23,12 @@ app.use("/", allRoutes);
 const diaryRoutes = require("./routes/diary.routes");
 app.use("/", diaryRoutes);
 
-const foodRoutes = require("./routes/food.routes");
-app.use("/", foodRoutes);
 
 const profileRoutes = require("./routes/user.routes");
 app.use("/", profileRoutes);
+
+const trainnerRoutes = require("./routes/formTrainner.routes");
+app.use("/", trainnerRoutes);
 
 
 

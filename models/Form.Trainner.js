@@ -71,6 +71,6 @@ const ptFormSchema = new Schema(
   }
 );
 
-const PtForm = model("PtForm", userSchema);
+const Personal = model("Personal", ptFormSchema);
 
-module.exports = User;
+module.exports = Personal;
