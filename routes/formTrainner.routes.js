@@ -8,7 +8,7 @@ const User = require('../models/User.model');
 
 router.post('/trainnerform', isAuthenticated, (req, res, next) => {
   const {name, email, typeOfWorkout, workoutFrequency, workoutSessionTime, hasInjuries, injuriesDetails, drink, smoke, workedoutBefore, dietType, supplements} = req.body;
-
+console.log(req.body)
   const {_id} = req.payload
 
 

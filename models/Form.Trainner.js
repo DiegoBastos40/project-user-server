@@ -20,18 +20,18 @@ const ptFormSchema = new Schema(
     },
     
   workoutFrequency:{
-  type:Number, min:0,
+  type:String, min:0,
  
  },
 
  workoutSessionTime:{
-  type:Number, min:0,
+  type:String, min:0,
  
  },
 
  injuries:{
    hasInjuries:{
-     type:Boolean
+     type:String
    },
   injuriesDetails:{
     type:String
@@ -40,17 +40,17 @@ const ptFormSchema = new Schema(
  },
 
  drink:{
-  type:Boolean
+  type:String
   
  },
 
  smoke:{
-  type:Boolean
+  type:String
   
  },
 
  workedoutBefore:{
-  type:Boolean
+  type:String
   
  },
 
@@ -60,7 +60,7 @@ const ptFormSchema = new Schema(
  },
 
  supplements:{
-  type:Boolean
+  type:String
   
  }
     

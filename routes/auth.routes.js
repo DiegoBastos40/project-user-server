@@ -115,7 +115,7 @@ router.post('/login', (req, res, next) => {
         const payload = { _id, username };
         const authToken = jwt.sign(payload, process.env.TOKEN_SECRET, {
           algorithm: 'HS256',
-          expiresIn: '6h',
+          expiresIn: '240h',
         });
 
         // req.session.user = user._id; // ! better and safer but in this case we saving the entire user object
