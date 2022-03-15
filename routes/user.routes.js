@@ -5,7 +5,17 @@ const {isAuthenticated} = require('../middleware/jwt.middleware');
 const User = require('../models/User.model');
 
 
-//GET PROFILE
+router.get('/user', isAuthenticated, (req, res, next) => {
+    const user = req.payload
+    console.log(user);
+    User.findById(req.payload._id)
+    .populate('ptRequest')
+      .then((response) => {console.log(response)
+    res.json(response)
+    })
+      
+      .catch((err) => res.json(err));
+  });
 
 
 router.put('/user', isAuthenticated, (req, res, next) => {

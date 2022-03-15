@@ -12,7 +12,7 @@ const userSchema = new Schema(
     required:true},
 caloriesWasted: {type:Number} ,
 foodCreated: [{ type: Schema.Types.ObjectId, ref: 'Food' }],
-ptRequest: {type: Schema.Types.ObjectId, ref: 'Personal'},
+ptRequest: [{type: Schema.Types.ObjectId, ref: 'Personal'}],
    name:  {type:String},
    age: {type:Number},
    gender: {type:String},
