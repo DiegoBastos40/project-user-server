@@ -8,13 +8,14 @@ const User = require('../models/User.model');
 
 router.post('/diary', isAuthenticated, (req, res, next) => {
   const {name, calories, protein, carbohydrates, fat, quantity } = req.body;
-
+console.log(req.payload)
   const {_id} = req.payload
 
 
 
   Food.create({name, calories, protein, carbohydrates, fat, quantity })
     .then((newFood) => {
+      console.log("new",newFood)
       return User.findByIdAndUpdate(_id, { $push: { foodCreated: newFood._id } }, { new: true });
     })
     .then((response) => res.json(response))
@@ -25,15 +26,18 @@ router.post('/diary', isAuthenticated, (req, res, next) => {
 
 
 
-router.get('/diary', (req, res, next) => {
-  Food.find()
+router.get('/diary', isAuthenticated,(req, res, next) => {
+  const diary = req.payload
+  console.log(diary);
+  Food.findById(req.payload._id)
+    .populate('foodCreated')
     .then((response) => res.json(response))
     .catch((err) => res.json(err));
 });
 
 
 
-router.get('/diary/:foodId', (req, res, next) => {
+router.get('/diary/:foodId',isAuthenticated, (req, res, next) => {
   const { foodId } = req.params;
 
   if (!mongoose.Types.ObjectId.isValid(foodId)) {
@@ -46,7 +50,7 @@ router.get('/diary/:foodId', (req, res, next) => {
     .catch((err) => res.json(err));
 });
 
-router.put('/diary/:foodId', (req, res, next) => {
+router.put('/diary/:foodId', isAuthenticated,(req, res, next) => {
   const { foodId } = req.params;
 
   if (!mongoose.Types.ObjectId.isValid(foodId)) {
@@ -59,7 +63,7 @@ router.put('/diary/:foodId', (req, res, next) => {
     .catch((err) => res.json(err));
 });
 
-router.delete('/diary/:foodId', (req, res, next) => {
+router.delete('/diary/:foodId', isAuthenticated,(req, res, next) => {
   const { foodId } = req.params;
 
   if (!mongoose.Types.ObjectId.isValid(foodId)) {
