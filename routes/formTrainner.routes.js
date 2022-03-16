@@ -42,7 +42,10 @@ router.get('/trainnerform/:trainnerId', (req, res, next) => {
   }
 
   Personal.findById(trainnerId)
-    .then((response) => res.json(response))
+    .then((response) => { 
+     console.log(response)
+      res.json(response)
+    })
     .catch((err) => res.json(err));
 });
 

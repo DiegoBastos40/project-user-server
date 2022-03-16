@@ -41,25 +41,25 @@ router.put('/user', isAuthenticated, (req, res, next) => {
 function TotalCaloricWaste(profile) {
     console.log(profile);
     const sum = 10*(profile.weight)+6.25*(profile.height)-5*(profile.age);
-    if (profile.gender === 'male' && profile.lifestyle === 'Light Active') {
+    if (profile.gender === 'male' && profile.lifestyle === 'Sedentary (Very little or no exercise, and desk job)') {
         return (sum + 5)*1.2
-    } else if (profile.gender === 'male' && profile.lifestyle === 'light active') {
+    } else if (profile.gender === 'male' && profile.lifestyle === 'Lightly Active (Light exercise 1 to 3 days per week)') {
         return (sum + 5)*1.375
-    } else if (profile.gender === 'male' && profile.lifestyle === 'moderately active') {
+    } else if (profile.gender === 'male' && profile.lifestyle === 'Moderately Active (Moderate exercise 3 to 5 days per week)') {
         return (sum + 5)*1.55
-    } else if (profile.gender === 'male' && profile.lifestyle === 'very active') {
+    } else if (profile.gender === 'male' && profile.lifestyle === 'Very Active (Heavy exercise 6 to 7 days per week)') {
         return (sum + 5)*1.725
-    } else if (profile.gender === 'male' && profile.lifestyle === 'extra active') {
+    } else if (profile.gender === 'male' && profile.lifestyle === 'Extremely Active (Very intense exercise, and physical job,exercise multiple times per day)') {
         return (sum + 5)*1.9
-    } else if (profile.gender === 'female' && profile.lifestyle === 'light active') {
+    } else if (profile.gender === 'female' && profile.lifestyle === 'Sedentary (Very little or no exercise, and desk job)') {
         return (sum - 161)*1.2
-    } else if (profile.gender === 'female' && profile.lifestyle === 'light active') {
+    } else if (profile.gender === 'female' && profile.lifestyle === 'Lightly Active (Light exercise 1 to 3 days per week)') {
         return (sum - 161)*1.375
-    } else if (profile.gender === 'female' && profile.lifestyle === 'moderately active') {  
+    } else if (profile.gender === 'female' && profile.lifestyle === 'Moderately Active (Moderate exercise 3 to 5 days per week)') {  
         return (sum - 161)*1.55
-    } else if (profile.gender === 'female' && profile.lifestyle === 'very active') {
+    } else if (profile.gender === 'female' && profile.lifestyle === 'Very Active (Heavy exercise 6 to 7 days per week)') {
         return (sum - 161)*1.725
-    } else if (profile.gender === 'female' && profile.lifestyle === 'extra active') {
+    } else if (profile.gender === 'female' && profile.lifestyle === 'Extremely Active (Very intense exercise, and physical job, exercise multiple times per day)') {
         return (sum - 161)*1.9
  
     }

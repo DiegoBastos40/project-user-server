@@ -22,7 +22,7 @@ router.get('/verify', isAuthenticated, (req, res, next) => {
 });
 
 router.post('/signup', (req, res) => {
-  const { username, password } = req.body;
+  const { username, password, name, age, gender, height, weight, objective, lifestyle} = req.body;
 
   if (!username) {
     return res.status(400).json({ errorMessage: 'Please provide your username.' });
@@ -61,6 +61,13 @@ router.post('/signup', (req, res) => {
         return User.create({
           username,
           password: hashedPassword,
+          name,
+          age,
+          gender,
+          height,
+          weight,
+          objective,
+          lifestyle,
         });
       })
       .then((user) => {
