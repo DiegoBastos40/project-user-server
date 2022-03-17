@@ -7,13 +7,16 @@ const User = require('../models/User.model');
 
 
 router.post('/diary', isAuthenticated, (req, res, next) => {
-  const {name, calories, protein, carbohydrates, fat, quantity } = req.body;
+  const {name, calories, protein, carbohydrates, fat, quantity, meal } = req.body;
+  
 console.log(req.payload)
   const {_id} = req.payload
+  
 
 
 
-  Food.create({name, calories, protein, carbohydrates, fat, quantity })
+  Food.create({name, calories, protein, carbohydrates, fat, quantity, meal })
+    
     .then((newFood) => {
       console.log("new",newFood)
       return User.findByIdAndUpdate(_id, { $push: { foodCreated: newFood._id } }, { new: true });

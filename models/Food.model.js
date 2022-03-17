@@ -26,7 +26,8 @@ const foodSchema = new Schema(
   quantity:{
   type:Number, min:0,
   //required:true
- }
+ },
+ meal: String
     
   },
   {
