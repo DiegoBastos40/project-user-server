@@ -5,6 +5,33 @@ const bcrypt = require('bcrypt');
 const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
 
+function TotalCaloricWaste(profile) {
+  console.log(profile);
+  const sum = 10*(profile.weight)+6.25*(profile.height)-5*(profile.age);
+  if (profile.gender === 'Male' && profile.lifestyle === 'Sedentary (Very little or no exercise, and desk job)') {
+      return (sum + 5)*1.2
+  } else if (profile.gender === 'Male' && profile.lifestyle === 'Lightly Active (Light exercise 1 to 3 days per week)') {
+      return (sum + 5)*1.375
+  } else if (profile.gender === 'Male' && profile.lifestyle === 'Moderately Active (Moderate exercise 3 to 5 days per week)') {
+      return (sum + 5)*1.55
+  } else if (profile.gender === 'Male' && profile.lifestyle === 'Very Active (Heavy exercise 6 to 7 days per week)') {
+      return (sum + 5)*1.725
+  } else if (profile.gender === 'Male' && profile.lifestyle === 'Extremely Active (Very intense exercise, and physical job,exercise multiple times per day)') {
+      return (sum + 5)*1.9
+  } else if (profile.gender === 'Female' && profile.lifestyle === 'Sedentary (Very little or no exercise, and desk job)') {
+      return (sum - 161)*1.2
+  } else if (profile.gender === 'Female' && profile.lifestyle === 'Lightly Active (Light exercise 1 to 3 days per week)') {
+      return (sum - 161)*1.375
+  } else if (profile.gender === 'Female' && profile.lifestyle === 'Moderately Active (Moderate exercise 3 to 5 days per week)') {  
+      return (sum - 161)*1.55
+  } else if (profile.gender === 'Female' && profile.lifestyle === 'Very Active (Heavy exercise 6 to 7 days per week)') {
+      return (sum - 161)*1.725
+  } else if (profile.gender === 'Female' && profile.lifestyle === 'Extremely Active (Very intense exercise, and physical job, exercise multiple times per day)') {
+      return (sum - 161)*1.9
+
+  }
+  
+}
 // How many rounds should bcrypt run the salt (default [10 - 12 rounds])
 const saltRounds = 10;
 
@@ -23,6 +50,7 @@ router.get('/verify', isAuthenticated, (req, res, next) => {
 
 router.post('/signup', (req, res) => {
   const { username, password, name, age, gender, height, weight, objective, lifestyle} = req.body;
+  const totalCalories = TotalCaloricWaste(req.body)
 
   if (!username) {
     return res.status(400).json({ errorMessage: 'Please provide your username.' });
@@ -32,33 +60,8 @@ router.post('/signup', (req, res) => {
     return res.status(400).json({
       errorMessage: 'Your password needs to be at least 8 characters long.',
     });
-    function TotalCaloricWaste(profile) {
-      console.log(profile);
-      const sum = 10*(profile.weight)+6.25*(profile.height)-5*(profile.age);
-      if (profile.gender === 'male' && profile.lifestyle === 'Sedentary (Very little or no exercise, and desk job)') {
-          return (sum + 5)*1.2
-      } else if (profile.gender === 'male' && profile.lifestyle === 'Lightly Active (Light exercise 1 to 3 days per week)') {
-          return (sum + 5)*1.375
-      } else if (profile.gender === 'male' && profile.lifestyle === 'Moderately Active (Moderate exercise 3 to 5 days per week)') {
-          return (sum + 5)*1.55
-      } else if (profile.gender === 'male' && profile.lifestyle === 'Very Active (Heavy exercise 6 to 7 days per week)') {
-          return (sum + 5)*1.725
-      } else if (profile.gender === 'male' && profile.lifestyle === 'Extremely Active (Very intense exercise, and physical job,exercise multiple times per day)') {
-          return (sum + 5)*1.9
-      } else if (profile.gender === 'female' && profile.lifestyle === 'Sedentary (Very little or no exercise, and desk job)') {
-          return (sum - 161)*1.2
-      } else if (profile.gender === 'female' && profile.lifestyle === 'Lightly Active (Light exercise 1 to 3 days per week)') {
-          return (sum - 161)*1.375
-      } else if (profile.gender === 'female' && profile.lifestyle === 'Moderately Active (Moderate exercise 3 to 5 days per week)') {  
-          return (sum - 161)*1.55
-      } else if (profile.gender === 'female' && profile.lifestyle === 'Very Active (Heavy exercise 6 to 7 days per week)') {
-          return (sum - 161)*1.725
-      } else if (profile.gender === 'female' && profile.lifestyle === 'Extremely Active (Very intense exercise, and physical job, exercise multiple times per day)') {
-          return (sum - 161)*1.9
 
-      }
-  }
- 
+
   
   }
  
@@ -96,10 +99,12 @@ router.post('/signup', (req, res) => {
           weight,
           objective,
           lifestyle,
+          totalCalories,
         });
       })
       .then((user) => {
         // Bind the user to the session object
+        console.log (TotalCaloricWaste(user))
         req.session.user = user;
         res.status(201).json(user);
       })

@@ -19,7 +19,8 @@ ptRequest: [{type: Schema.Types.ObjectId, ref: 'Personal'}],
    height: {type:Number},
    weight: {type:Number},
    objective: {type:String},
-   lifestyle: {type:String}
+   lifestyle: {type:String},
+   totalCalories: {type:Number},
 
   },
   {

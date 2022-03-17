@@ -26,12 +26,12 @@ router.put('/user', isAuthenticated, (req, res, next) => {
 
     
     User.findByIdAndUpdate(_id, {name, age, gender, height, weight, objective, lifestyle}, {new:true}) 
-    .then(updatedUser => {
+     .then(updatedUser => {
         console.log (TotalCaloricWaste(updatedUser));
         TotalCaloricWaste(updatedUser);
         //const result = TotalCaloricWaste(updatedUser)
         
-    }) 
+    })  
     .then((response) => res.json(response))
     .catch((err) => res.json(err)); 
 });
